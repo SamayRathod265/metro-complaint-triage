@@ -1,0 +1,378 @@
+{
+ "test_set": "eval_complaints.json",
+ "n": 120,
+ "layers": {
+  "Naive Bayes + rules (offline pipeline)": {
+   "n": 120,
+   "dept_acc": 0.9166666666666666,
+   "urg_within_1": 0.9583333333333334,
+   "safety_recall": 0.9230769230769231,
+   "false_red": 3,
+   "avg_seconds": 0.0007664718999952432,
+   "misclassified": [
+    {
+     "text": "સ્ટેશનના ગેટ પાસે કોઈ સિક્યોરિટી નથી, રાત્રે બીક લાગે છે",
+     "gold": "safety",
+     "pred": "other",
+     "gold_urgency": 3,
+     "pred_urgency": 3
+    },
+    {
+     "text": "Bachchu bheed ma khovai gayu che, koi madad karo",
+     "gold": "safety",
+     "pred": "cleanliness",
+     "gold_urgency": 5,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Moving stairs at gate 4 out of order again",
+     "gold": "lifts",
+     "pred": "safety",
+     "gold_urgency": 3,
+     "pred_urgency": 4
+    },
+    {
+     "text": "Lift smells bad and the emergency phone inside is dead",
+     "gold": "lifts",
+     "pred": "safety",
+     "gold_urgency": 3,
+     "pred_urgency": 4
+    },
+    {
+     "text": "Overflowing bins at the entrance, flies everywhere",
+     "gold": "cleanliness",
+     "pred": "safety",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Why is the fare to Kalupur higher than what the website shows?",
+     "gold": "fare",
+     "pred": "safety",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Customer care executive hung up on me twice",
+     "gold": "staff_behaviour",
+     "pred": "fare",
+     "gold_urgency": 2,
+     "pred_urgency": 3
+    },
+    {
+     "text": "Wi-Fi at the station doesn't work",
+     "gold": "other",
+     "pred": "safety",
+     "gold_urgency": 1,
+     "pred_urgency": 1
+    },
+    {
+     "text": "Platform pe mobile charging point lagwa do",
+     "gold": "other",
+     "pred": "safety",
+     "gold_urgency": 1,
+     "pred_urgency": 1
+    },
+    {
+     "text": "Lost and found counter kahan hai? Mera bag kho gaya",
+     "gold": "other",
+     "pred": "safety",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    }
+   ]
+  },
+  "Keyword rules only": {
+   "n": 120,
+   "dept_acc": 0.6833333333333333,
+   "urg_within_1": 0.9083333333333333,
+   "safety_recall": 0.9230769230769231,
+   "false_red": 1,
+   "avg_seconds": 0.0003633606333323769,
+   "misclassified": [
+    {
+     "text": "Platform screen door is not closing properly, children are leaning on it",
+     "gold": "safety",
+     "pred": "other",
+     "gold_urgency": 4,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Water leaking onto the electrical panel near platform 2",
+     "gold": "safety",
+     "pred": "other",
+     "gold_urgency": 4,
+     "pred_urgency": 2
+    },
+    {
+     "text": "रात को स्टेशन के बाहर बिल्कुल अंधेरा रहता है, लड़कियों को डर लगता है",
+     "gold": "safety",
+     "pred": "other",
+     "gold_urgency": 3,
+     "pred_urgency": 2
+    },
+    {
+     "text": "સ્ટેશનના ગેટ પાસે કોઈ સિક્યોરિટી નથી, રાત્રે બીક લાગે છે",
+     "gold": "safety",
+     "pred": "other",
+     "gold_urgency": 3,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Bachchu bheed ma khovai gayu che, koi madad karo",
+     "gold": "safety",
+     "pred": "other",
+     "gold_urgency": 5,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Station pe CCTV kaam nahi kar rahe, meri chori ho gayi",
+     "gold": "safety",
+     "pred": "other",
+     "gold_urgency": 3,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Gate pase etli bheed che ke dhakka-mukki thai rahi che",
+     "gold": "safety",
+     "pred": "other",
+     "gold_urgency": 4,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Moving stairs at gate 4 out of order again",
+     "gold": "lifts",
+     "pred": "other",
+     "gold_urgency": 3,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Lift smells bad and the emergency phone inside is dead",
+     "gold": "lifts",
+     "pred": "safety",
+     "gold_urgency": 3,
+     "pred_urgency": 4
+    },
+    {
+     "text": "એલિવેટર ચાલુ જ નથી થતું, સ્ટ્રોલર લઈને આવવું મુશ્કેલ છે",
+     "gold": "lifts",
+     "pred": "other",
+     "gold_urgency": 3,
+     "pred_urgency": 2
+    },
+    {
+     "text": "The washroom has no water and stinks",
+     "gold": "cleanliness",
+     "pred": "other",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Paan stains all over the stairs near exit B",
+     "gold": "cleanliness",
+     "pred": "other",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Seats in the coach are sticky and full of food wrappers",
+     "gold": "cleanliness",
+     "pred": "other",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Dead pigeon lying on the platform since yesterday",
+     "gold": "cleanliness",
+     "pred": "other",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Overflowing bins at the entrance, flies everywhere",
+     "gold": "cleanliness",
+     "pred": "other",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "प्लेटफॉर्म पर जगह जगह थूक और गुटखे के दाग हैं",
+     "gold": "cleanliness",
+     "pred": "other",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "સ્ટેશનના બાથરૂમમાં પાણી નથી અને ખૂબ ગંધ આવે છે",
+     "gold": "cleanliness",
+     "pred": "other",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "પગથિયાં પર પાનની પિચકારીઓ છે, કોઈ સાફ કરતું નથી",
+     "gold": "cleanliness",
+     "pred": "other",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "ડબ્બામાં ઉંદર દોડતા જોયા",
+     "gold": "cleanliness",
+     "pred": "other",
+     "gold_urgency": 3,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Bathroom ma bahu gandh aave che, paani pan nathi",
+     "gold": "cleanliness",
+     "pred": "other",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Platform par kachro padyo che, koi uthavtu nathi",
+     "gold": "cleanliness",
+     "pred": "other",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Coach ma koi e ulti kari che, koi saaf karo",
+     "gold": "cleanliness",
+     "pred": "other",
+     "gold_urgency": 3,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Washroom mein na sabun hai na paani",
+     "gold": "cleanliness",
+     "pred": "other",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Coach mein cockroach ghoom rahe the",
+     "gold": "cleanliness",
+     "pred": "other",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Ladies restroom floor is filthy and the sink is clogged",
+     "gold": "cleanliness",
+     "pred": "other",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "પ્લેટફોર્મ પર કચરાપેટી ભરાઈ ગઈ છે",
+     "gold": "cleanliness",
+     "pred": "other",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Gate par card tap karyu to double charge thayu",
+     "gold": "fare",
+     "pred": "other",
+     "gold_urgency": 3,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Student pass ka discount nahi mil raha",
+     "gold": "fare",
+     "pred": "other",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Card top-up machine only accepts cash, no UPI option",
+     "gold": "fare",
+     "pred": "other",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Ticket counter clerk was on his phone and ignored the queue",
+     "gold": "staff_behaviour",
+     "pred": "fare",
+     "gold_urgency": 2,
+     "pred_urgency": 3
+    },
+    {
+     "text": "Frisking officer misbehaved with my wife during checking",
+     "gold": "staff_behaviour",
+     "pred": "other",
+     "gold_urgency": 4,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Customer care executive hung up on me twice",
+     "gold": "staff_behaviour",
+     "pred": "other",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "काउंटर वाले कर्मचारी ने चिल्लाकर बात की",
+     "gold": "staff_behaviour",
+     "pred": "other",
+     "gold_urgency": 3,
+     "pred_urgency": 2
+    },
+    {
+     "text": "ટિકિટ કાઉન્ટર પરનો કર્મચારી જવાબ જ નથી આપતો",
+     "gold": "staff_behaviour",
+     "pred": "fare",
+     "gold_urgency": 2,
+     "pred_urgency": 3
+    },
+    {
+     "text": "Counter par beseli madam phone ma j vyast hati",
+     "gold": "staff_behaviour",
+     "pred": "other",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Counter wala bahut attitude dikha raha tha",
+     "gold": "staff_behaviour",
+     "pred": "other",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "Station controller refused to note down my complaint",
+     "gold": "staff_behaviour",
+     "pred": "other",
+     "gold_urgency": 2,
+     "pred_urgency": 2
+    },
+    {
+     "text": "ગેટ પરના કર્મચારીએ મુસાફરો સાથે ઝઘડો કર્યો",
+     "gold": "staff_behaviour",
+     "pred": "other",
+     "gold_urgency": 3,
+     "pred_urgency": 2
+    }
+   ]
+  }
+ },
+ "dept_acc_by_language": {
+  "Naive Bayes + rules (offline pipeline)": {
+   "English": 0.857,
+   "Gujarati": 0.957,
+   "Gujlish": 0.947,
+   "Hindi": 1.0,
+   "Hinglish": 0.889
+  },
+  "Keyword rules only": {
+   "English": 0.643,
+   "Gujarati": 0.652,
+   "Gujlish": 0.632,
+   "Hindi": 0.833,
+   "Hinglish": 0.722
+  }
+ }
+}

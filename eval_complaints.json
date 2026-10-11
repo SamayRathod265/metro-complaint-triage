@@ -1,0 +1,962 @@
+[
+ {
+  "id": 5001,
+  "station": "Motera Stadium",
+  "language": "English",
+  "text": "There is a burning smell coming from under the seats in coach 3",
+  "gold_department": "safety",
+  "gold_urgency": 5
+ },
+ {
+  "id": 5002,
+  "station": "Old High Court",
+  "language": "English",
+  "text": "Man fainted near the ticket counter, needs a doctor",
+  "gold_department": "safety",
+  "gold_urgency": 5
+ },
+ {
+  "id": 5003,
+  "station": "Gandhinagar Sector 1",
+  "language": "English",
+  "text": "Platform screen door is not closing properly, children are leaning on it",
+  "gold_department": "safety",
+  "gold_urgency": 4
+ },
+ {
+  "id": 5004,
+  "station": "Thaltej",
+  "language": "English",
+  "text": "A guy kept following and touching my sister in the train",
+  "gold_department": "safety",
+  "gold_urgency": 5
+ },
+ {
+  "id": 5005,
+  "station": "Vastral Gam",
+  "language": "English",
+  "text": "Water leaking onto the electrical panel near platform 2",
+  "gold_department": "safety",
+  "gold_urgency": 4
+ },
+ {
+  "id": 5006,
+  "station": "Kalupur",
+  "language": "Hindi",
+  "text": "प्लेटफॉर्म पर एक बुजुर्ग बेहोश होकर पड़े हैं",
+  "gold_department": "safety",
+  "gold_urgency": 5
+ },
+ {
+  "id": 5007,
+  "station": "Motera Stadium",
+  "language": "Hindi",
+  "text": "कोच में धुआं भर गया है, लोग घबरा रहे हैं",
+  "gold_department": "safety",
+  "gold_urgency": 5
+ },
+ {
+  "id": 5008,
+  "station": "Old High Court",
+  "language": "Hindi",
+  "text": "रात को स्टेशन के बाहर बिल्कुल अंधेरा रहता है, लड़कियों को डर लगता है",
+  "gold_department": "safety",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5009,
+  "station": "Gandhinagar Sector 1",
+  "language": "Gujarati",
+  "text": "ટ્રેનનો દરવાજો ખુલ્લો રહી ગયો અને ટ્રેન ચાલુ થઈ ગઈ",
+  "gold_department": "safety",
+  "gold_urgency": 5
+ },
+ {
+  "id": 5010,
+  "station": "Thaltej",
+  "language": "Gujarati",
+  "text": "પ્લેટફોર્મ પર એક માણસ ચક્કર ખાઈને બેભાન થઈ ગયો",
+  "gold_department": "safety",
+  "gold_urgency": 5
+ },
+ {
+  "id": 5011,
+  "station": "Vastral Gam",
+  "language": "Gujarati",
+  "text": "સ્ટેશનના ગેટ પાસે કોઈ સિક્યોરિટી નથી, રાત્રે બીક લાગે છે",
+  "gold_department": "safety",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5012,
+  "station": "Kalupur",
+  "language": "Gujlish",
+  "text": "Coach ma ek bhai daaru pi ne badha ne dhamki aape che",
+  "gold_department": "safety",
+  "gold_urgency": 5
+ },
+ {
+  "id": 5013,
+  "station": "Motera Stadium",
+  "language": "Gujlish",
+  "text": "Platform par paani bharayelu che ane current no wire niche latke che",
+  "gold_department": "safety",
+  "gold_urgency": 5
+ },
+ {
+  "id": 5014,
+  "station": "Old High Court",
+  "language": "Gujlish",
+  "text": "Bachchu bheed ma khovai gayu che, koi madad karo",
+  "gold_department": "safety",
+  "gold_urgency": 5
+ },
+ {
+  "id": 5015,
+  "station": "Gandhinagar Sector 1",
+  "language": "Hinglish",
+  "text": "Train ke andar ek aadmi chaku leke ghoom raha hai",
+  "gold_department": "safety",
+  "gold_urgency": 5
+ },
+ {
+  "id": 5016,
+  "station": "Thaltej",
+  "language": "Hinglish",
+  "text": "Escalator ke paas kuch ladke ladkiyon ko chhed rahe the",
+  "gold_department": "safety",
+  "gold_urgency": 5
+ },
+ {
+  "id": 5017,
+  "station": "Vastral Gam",
+  "language": "Hinglish",
+  "text": "Station pe CCTV kaam nahi kar rahe, meri chori ho gayi",
+  "gold_department": "safety",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5018,
+  "station": "Kalupur",
+  "language": "English",
+  "text": "Suspicious unattended bag lying on platform 1 for the last 20 minutes",
+  "gold_department": "safety",
+  "gold_urgency": 5
+ },
+ {
+  "id": 5019,
+  "station": "Motera Stadium",
+  "language": "English",
+  "text": "Fire extinguisher at the concourse is empty and expired",
+  "gold_department": "safety",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5020,
+  "station": "Old High Court",
+  "language": "Gujlish",
+  "text": "Gate pase etli bheed che ke dhakka-mukki thai rahi che",
+  "gold_department": "safety",
+  "gold_urgency": 4
+ },
+ {
+  "id": 5021,
+  "station": "Gandhinagar Sector 1",
+  "language": "English",
+  "text": "Escalator going up at the main entrance has been stopped for two days",
+  "gold_department": "lifts",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5022,
+  "station": "Thaltej",
+  "language": "English",
+  "text": "Lift doors keep opening and closing, it won't move",
+  "gold_department": "lifts",
+  "gold_urgency": 4
+ },
+ {
+  "id": 5023,
+  "station": "Vastral Gam",
+  "language": "English",
+  "text": "The elevator button for platform level is broken",
+  "gold_department": "lifts",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5024,
+  "station": "Kalupur",
+  "language": "English",
+  "text": "No working lift for wheelchair users at this station, I could not board",
+  "gold_department": "lifts",
+  "gold_urgency": 4
+ },
+ {
+  "id": 5025,
+  "station": "Motera Stadium",
+  "language": "English",
+  "text": "Escalator is making a loud grinding noise and jerking",
+  "gold_department": "lifts",
+  "gold_urgency": 4
+ },
+ {
+  "id": 5026,
+  "station": "Old High Court",
+  "language": "Hindi",
+  "text": "लिफ्ट पिछले हफ्ते से बंद है, बुजुर्गों को सीढ़ियां चढ़नी पड़ रही हैं",
+  "gold_department": "lifts",
+  "gold_urgency": 4
+ },
+ {
+  "id": 5027,
+  "station": "Gandhinagar Sector 1",
+  "language": "Hindi",
+  "text": "एस्केलेटर रोज़ सुबह बंद मिलता है",
+  "gold_department": "lifts",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5028,
+  "station": "Thaltej",
+  "language": "Hindi",
+  "text": "लिफ्ट का दरवाज़ा ठीक से नहीं खुलता",
+  "gold_department": "lifts",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5029,
+  "station": "Vastral Gam",
+  "language": "Gujarati",
+  "text": "લિફ્ટ ત્રણ દિવસથી બંધ છે, વ્હીલચેરવાળા લોકો ઉપર જઈ શકતા નથી",
+  "gold_department": "lifts",
+  "gold_urgency": 4
+ },
+ {
+  "id": 5030,
+  "station": "Kalupur",
+  "language": "Gujarati",
+  "text": "એસ્કેલેટર વારંવાર બંધ થઈ જાય છે",
+  "gold_department": "lifts",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5031,
+  "station": "Motera Stadium",
+  "language": "Gujarati",
+  "text": "લિફ્ટમાં લાઈટ નથી અને પંખો ચાલતો નથી",
+  "gold_department": "lifts",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5032,
+  "station": "Old High Court",
+  "language": "Gujlish",
+  "text": "Lift bandh che, mummy ne pagthiya chadva padya",
+  "gold_department": "lifts",
+  "gold_urgency": 4
+ },
+ {
+  "id": 5033,
+  "station": "Gandhinagar Sector 1",
+  "language": "Gujlish",
+  "text": "Escalator kyare chalu thase? Ek mahina thi bandh che",
+  "gold_department": "lifts",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5034,
+  "station": "Thaltej",
+  "language": "Gujlish",
+  "text": "Lift nu button dabaviye to kai thatu nathi",
+  "gold_department": "lifts",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5035,
+  "station": "Vastral Gam",
+  "language": "Hinglish",
+  "text": "Lift ka display kharab hai, floor pata nahi chalta",
+  "gold_department": "lifts",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5036,
+  "station": "Kalupur",
+  "language": "Hinglish",
+  "text": "Escalator ulta chal raha hai, sab confuse ho rahe hain",
+  "gold_department": "lifts",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5037,
+  "station": "Motera Stadium",
+  "language": "Hinglish",
+  "text": "Lift aane mein bahut der lagti hai, 10 minute wait kiya",
+  "gold_department": "lifts",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5038,
+  "station": "Old High Court",
+  "language": "English",
+  "text": "Moving stairs at gate 4 out of order again",
+  "gold_department": "lifts",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5039,
+  "station": "Gandhinagar Sector 1",
+  "language": "English",
+  "text": "Lift smells bad and the emergency phone inside is dead",
+  "gold_department": "lifts",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5040,
+  "station": "Thaltej",
+  "language": "Gujarati",
+  "text": "એલિવેટર ચાલુ જ નથી થતું, સ્ટ્રોલર લઈને આવવું મુશ્કેલ છે",
+  "gold_department": "lifts",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5041,
+  "station": "Vastral Gam",
+  "language": "English",
+  "text": "The washroom has no water and stinks",
+  "gold_department": "cleanliness",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5042,
+  "station": "Kalupur",
+  "language": "English",
+  "text": "Paan stains all over the stairs near exit B",
+  "gold_department": "cleanliness",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5043,
+  "station": "Motera Stadium",
+  "language": "English",
+  "text": "Seats in the coach are sticky and full of food wrappers",
+  "gold_department": "cleanliness",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5044,
+  "station": "Old High Court",
+  "language": "English",
+  "text": "Dead pigeon lying on the platform since yesterday",
+  "gold_department": "cleanliness",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5045,
+  "station": "Gandhinagar Sector 1",
+  "language": "English",
+  "text": "Overflowing bins at the entrance, flies everywhere",
+  "gold_department": "cleanliness",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5046,
+  "station": "Thaltej",
+  "language": "Hindi",
+  "text": "शौचालय में पानी नहीं है और बहुत बदबू आ रही है",
+  "gold_department": "cleanliness",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5047,
+  "station": "Vastral Gam",
+  "language": "Hindi",
+  "text": "प्लेटफॉर्म पर जगह जगह थूक और गुटखे के दाग हैं",
+  "gold_department": "cleanliness",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5048,
+  "station": "Kalupur",
+  "language": "Hindi",
+  "text": "कोच का फर्श बहुत गंदा है",
+  "gold_department": "cleanliness",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5049,
+  "station": "Motera Stadium",
+  "language": "Gujarati",
+  "text": "સ્ટેશનના બાથરૂમમાં પાણી નથી અને ખૂબ ગંધ આવે છે",
+  "gold_department": "cleanliness",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5050,
+  "station": "Old High Court",
+  "language": "Gujarati",
+  "text": "પગથિયાં પર પાનની પિચકારીઓ છે, કોઈ સાફ કરતું નથી",
+  "gold_department": "cleanliness",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5051,
+  "station": "Gandhinagar Sector 1",
+  "language": "Gujarati",
+  "text": "ડબ્બામાં ઉંદર દોડતા જોયા",
+  "gold_department": "cleanliness",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5052,
+  "station": "Thaltej",
+  "language": "Gujlish",
+  "text": "Bathroom ma bahu gandh aave che, paani pan nathi",
+  "gold_department": "cleanliness",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5053,
+  "station": "Vastral Gam",
+  "language": "Gujlish",
+  "text": "Platform par kachro padyo che, koi uthavtu nathi",
+  "gold_department": "cleanliness",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5054,
+  "station": "Kalupur",
+  "language": "Gujlish",
+  "text": "Coach ma koi e ulti kari che, koi saaf karo",
+  "gold_department": "cleanliness",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5055,
+  "station": "Motera Stadium",
+  "language": "Hinglish",
+  "text": "Washroom mein na sabun hai na paani",
+  "gold_department": "cleanliness",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5056,
+  "station": "Old High Court",
+  "language": "Hinglish",
+  "text": "Station pe har jagah plastic aur kachra pada hai",
+  "gold_department": "cleanliness",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5057,
+  "station": "Gandhinagar Sector 1",
+  "language": "Hinglish",
+  "text": "Coach mein cockroach ghoom rahe the",
+  "gold_department": "cleanliness",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5058,
+  "station": "Thaltej",
+  "language": "English",
+  "text": "Drinking water cooler is dirty with green algae inside",
+  "gold_department": "cleanliness",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5059,
+  "station": "Vastral Gam",
+  "language": "English",
+  "text": "Ladies restroom floor is filthy and the sink is clogged",
+  "gold_department": "cleanliness",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5060,
+  "station": "Kalupur",
+  "language": "Gujarati",
+  "text": "પ્લેટફોર્મ પર કચરાપેટી ભરાઈ ગઈ છે",
+  "gold_department": "cleanliness",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5061,
+  "station": "Motera Stadium",
+  "language": "English",
+  "text": "Ticket vending machine took my money but no token came out",
+  "gold_department": "fare",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5062,
+  "station": "Old High Court",
+  "language": "English",
+  "text": "I was charged twice for the same journey on my card",
+  "gold_department": "fare",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5063,
+  "station": "Gandhinagar Sector 1",
+  "language": "English",
+  "text": "QR ticket from the app is not scanning at the gate",
+  "gold_department": "fare",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5064,
+  "station": "Thaltej",
+  "language": "English",
+  "text": "AFC gate deducted maximum fare even though I only went 2 stations",
+  "gold_department": "fare",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5065,
+  "station": "Vastral Gam",
+  "language": "English",
+  "text": "Recharge done via UPI but balance not updated on card",
+  "gold_department": "fare",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5066,
+  "station": "Kalupur",
+  "language": "Hindi",
+  "text": "मशीन ने पैसे काट लिए पर टोकन नहीं निकला",
+  "gold_department": "fare",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5067,
+  "station": "Motera Stadium",
+  "language": "Hindi",
+  "text": "कार्ड से दो बार किराया कट गया",
+  "gold_department": "fare",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5068,
+  "station": "Old High Court",
+  "language": "Hindi",
+  "text": "रिफंड का पैसा अभी तक नहीं आया",
+  "gold_department": "fare",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5069,
+  "station": "Gandhinagar Sector 1",
+  "language": "Gujarati",
+  "text": "ટિકિટ મશીનમાં પૈસા નાખ્યા પણ ટોકન ન આવ્યું",
+  "gold_department": "fare",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5070,
+  "station": "Thaltej",
+  "language": "Gujarati",
+  "text": "મારા કાર્ડમાંથી બે વાર પૈસા કપાઈ ગયા",
+  "gold_department": "fare",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5071,
+  "station": "Vastral Gam",
+  "language": "Gujarati",
+  "text": "QR કોડ ગેટ પર સ્કેન થતો નથી",
+  "gold_department": "fare",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5072,
+  "station": "Kalupur",
+  "language": "Gujlish",
+  "text": "Machine e paisa lai lidha pan token na aapyo",
+  "gold_department": "fare",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5073,
+  "station": "Motera Stadium",
+  "language": "Gujlish",
+  "text": "Card ma recharge karyu pan balance ma dekhatu nathi",
+  "gold_department": "fare",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5074,
+  "station": "Old High Court",
+  "language": "Gujlish",
+  "text": "Gate par card tap karyu to double charge thayu",
+  "gold_department": "fare",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5075,
+  "station": "Gandhinagar Sector 1",
+  "language": "Hinglish",
+  "text": "UPI se payment kiya par ticket generate nahi hua",
+  "gold_department": "fare",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5076,
+  "station": "Thaltej",
+  "language": "Hinglish",
+  "text": "Counter pe chhutta paise wapas nahi mile",
+  "gold_department": "fare",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5077,
+  "station": "Vastral Gam",
+  "language": "Hinglish",
+  "text": "Student pass ka discount nahi mil raha",
+  "gold_department": "fare",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5078,
+  "station": "Kalupur",
+  "language": "English",
+  "text": "Why is the fare to Kalupur higher than what the website shows?",
+  "gold_department": "fare",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5079,
+  "station": "Motera Stadium",
+  "language": "English",
+  "text": "Card top-up machine only accepts cash, no UPI option",
+  "gold_department": "fare",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5080,
+  "station": "Old High Court",
+  "language": "Gujarati",
+  "text": "રિફંડની અરજી કરી હતી, હજુ સુધી પૈસા પાછા નથી આવ્યા",
+  "gold_department": "fare",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5081,
+  "station": "Gandhinagar Sector 1",
+  "language": "English",
+  "text": "Security guard shouted at my father for no reason",
+  "gold_department": "staff_behaviour",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5082,
+  "station": "Thaltej",
+  "language": "English",
+  "text": "Ticket counter clerk was on his phone and ignored the queue",
+  "gold_department": "staff_behaviour",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5083,
+  "station": "Vastral Gam",
+  "language": "English",
+  "text": "The staff member was very rude when I asked for directions",
+  "gold_department": "staff_behaviour",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5084,
+  "station": "Kalupur",
+  "language": "English",
+  "text": "Frisking officer misbehaved with my wife during checking",
+  "gold_department": "staff_behaviour",
+  "gold_urgency": 4
+ },
+ {
+  "id": 5085,
+  "station": "Motera Stadium",
+  "language": "English",
+  "text": "Customer care executive hung up on me twice",
+  "gold_department": "staff_behaviour",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5086,
+  "station": "Old High Court",
+  "language": "Hindi",
+  "text": "गार्ड ने बहुत बदतमीज़ी से बात की",
+  "gold_department": "staff_behaviour",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5087,
+  "station": "Gandhinagar Sector 1",
+  "language": "Hindi",
+  "text": "काउंटर वाले कर्मचारी ने चिल्लाकर बात की",
+  "gold_department": "staff_behaviour",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5088,
+  "station": "Thaltej",
+  "language": "Hindi",
+  "text": "स्टाफ ने व्हीलचेयर वाले यात्री की मदद करने से मना कर दिया",
+  "gold_department": "staff_behaviour",
+  "gold_urgency": 4
+ },
+ {
+  "id": 5089,
+  "station": "Vastral Gam",
+  "language": "Gujarati",
+  "text": "સિક્યોરિટી ગાર્ડે મારી સાથે ઉદ્ધત વર્તન કર્યું",
+  "gold_department": "staff_behaviour",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5090,
+  "station": "Kalupur",
+  "language": "Gujarati",
+  "text": "ટિકિટ કાઉન્ટર પરનો કર્મચારી જવાબ જ નથી આપતો",
+  "gold_department": "staff_behaviour",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5091,
+  "station": "Motera Stadium",
+  "language": "Gujarati",
+  "text": "સ્ટાફે વૃદ્ધ મુસાફર પર બૂમો પાડી",
+  "gold_department": "staff_behaviour",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5092,
+  "station": "Old High Court",
+  "language": "Gujlish",
+  "text": "Guard e bahu kharab rite vaat kari, apmaan karyu",
+  "gold_department": "staff_behaviour",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5093,
+  "station": "Gandhinagar Sector 1",
+  "language": "Gujlish",
+  "text": "Counter par beseli madam phone ma j vyast hati",
+  "gold_department": "staff_behaviour",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5094,
+  "station": "Thaltej",
+  "language": "Gujlish",
+  "text": "Staff ne puchyu to kidhu ke maru kaam nathi",
+  "gold_department": "staff_behaviour",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5095,
+  "station": "Vastral Gam",
+  "language": "Hinglish",
+  "text": "Guard ne bina wajah dhakka diya",
+  "gold_department": "staff_behaviour",
+  "gold_urgency": 4
+ },
+ {
+  "id": 5096,
+  "station": "Kalupur",
+  "language": "Hinglish",
+  "text": "Maine complaint ki to staff wale ne gaali di",
+  "gold_department": "staff_behaviour",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5097,
+  "station": "Motera Stadium",
+  "language": "Hinglish",
+  "text": "Counter wala bahut attitude dikha raha tha",
+  "gold_department": "staff_behaviour",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5098,
+  "station": "Old High Court",
+  "language": "English",
+  "text": "Station controller refused to note down my complaint",
+  "gold_department": "staff_behaviour",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5099,
+  "station": "Gandhinagar Sector 1",
+  "language": "English",
+  "text": "Housekeeping staff were rude and told us to get off the bench",
+  "gold_department": "staff_behaviour",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5100,
+  "station": "Thaltej",
+  "language": "Gujarati",
+  "text": "ગેટ પરના કર્મચારીએ મુસાફરો સાથે ઝઘડો કર્યો",
+  "gold_department": "staff_behaviour",
+  "gold_urgency": 3
+ },
+ {
+  "id": 5101,
+  "station": "Vastral Gam",
+  "language": "English",
+  "text": "Please increase train frequency in the evening peak",
+  "gold_department": "other",
+  "gold_urgency": 1
+ },
+ {
+  "id": 5102,
+  "station": "Kalupur",
+  "language": "English",
+  "text": "Wi-Fi at the station doesn't work",
+  "gold_department": "other",
+  "gold_urgency": 1
+ },
+ {
+  "id": 5103,
+  "station": "Motera Stadium",
+  "language": "English",
+  "text": "Can you add more parking for two-wheelers at the station?",
+  "gold_department": "other",
+  "gold_urgency": 1
+ },
+ {
+  "id": 5104,
+  "station": "Old High Court",
+  "language": "English",
+  "text": "Announcements are only in English, please add Gujarati too",
+  "gold_department": "other",
+  "gold_urgency": 1
+ },
+ {
+  "id": 5105,
+  "station": "Gandhinagar Sector 1",
+  "language": "English",
+  "text": "Train was 15 minutes late this morning with no announcement",
+  "gold_department": "other",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5106,
+  "station": "Thaltej",
+  "language": "Hindi",
+  "text": "शाम को ट्रेनें बहुत कम आती हैं, फ्रीक्वेंसी बढ़ाइए",
+  "gold_department": "other",
+  "gold_urgency": 1
+ },
+ {
+  "id": 5107,
+  "station": "Vastral Gam",
+  "language": "Hindi",
+  "text": "स्टेशन पर पीने के पानी की व्यवस्था नहीं है",
+  "gold_department": "other",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5108,
+  "station": "Kalupur",
+  "language": "Hindi",
+  "text": "मेट्रो सुबह 6 बजे से पहले शुरू होनी चाहिए",
+  "gold_department": "other",
+  "gold_urgency": 1
+ },
+ {
+  "id": 5109,
+  "station": "Motera Stadium",
+  "language": "Gujarati",
+  "text": "સાંજે ટ્રેન બહુ ઓછી આવે છે, વધારે ટ્રેન ચલાવો",
+  "gold_department": "other",
+  "gold_urgency": 1
+ },
+ {
+  "id": 5110,
+  "station": "Old High Court",
+  "language": "Gujarati",
+  "text": "સ્ટેશન પર પાર્કિંગની જગ્યા નથી",
+  "gold_department": "other",
+  "gold_urgency": 1
+ },
+ {
+  "id": 5111,
+  "station": "Gandhinagar Sector 1",
+  "language": "Gujarati",
+  "text": "જાહેરાત ગુજરાતીમાં પણ થવી જોઈએ",
+  "gold_department": "other",
+  "gold_urgency": 1
+ },
+ {
+  "id": 5112,
+  "station": "Thaltej",
+  "language": "Gujlish",
+  "text": "Metro ma Wi-Fi chaltu nathi",
+  "gold_department": "other",
+  "gold_urgency": 1
+ },
+ {
+  "id": 5113,
+  "station": "Vastral Gam",
+  "language": "Gujlish",
+  "text": "Station thi bus stop sudhi shuttle chalu karo",
+  "gold_department": "other",
+  "gold_urgency": 1
+ },
+ {
+  "id": 5114,
+  "station": "Kalupur",
+  "language": "Gujlish",
+  "text": "Train aaje 20 minute modi aavi, koi announcement nahotu",
+  "gold_department": "other",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5115,
+  "station": "Motera Stadium",
+  "language": "Hinglish",
+  "text": "Platform pe mobile charging point lagwa do",
+  "gold_department": "other",
+  "gold_urgency": 1
+ },
+ {
+  "id": 5116,
+  "station": "Old High Court",
+  "language": "Hinglish",
+  "text": "Lost and found counter kahan hai? Mera bag kho gaya",
+  "gold_department": "other",
+  "gold_urgency": 2
+ },
+ {
+  "id": 5117,
+  "station": "Gandhinagar Sector 1",
+  "language": "Hinglish",
+  "text": "Train ki timing app mein galat dikhti hai",
+  "gold_department": "other",
+  "gold_urgency": 1
+ },
+ {
+  "id": 5118,
+  "station": "Thaltej",
+  "language": "English",
+  "text": "Signboards inside the station are confusing, I took the wrong exit",
+  "gold_department": "other",
+  "gold_urgency": 1
+ },
+ {
+  "id": 5119,
+  "station": "Vastral Gam",
+  "language": "English",
+  "text": "Please extend metro service till midnight on weekends",
+  "gold_department": "other",
+  "gold_urgency": 1
+ },
+ {
+  "id": 5120,
+  "station": "Kalupur",
+  "language": "Gujarati",
+  "text": "મેટ્રો એપમાં ટ્રેનનો સમય ખોટો બતાવે છે",
+  "gold_department": "other",
+  "gold_urgency": 1
+ }
+]

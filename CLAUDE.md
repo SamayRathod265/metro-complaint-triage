@@ -1,44 +1,38 @@
-# Every Complaint Heard — Gujarat Metro (PS-07)
+# Every Complaint Heard (PS-07, DevFest Gandhinagar Metro Hacks)
 
-2-hour hackathon. Offline-first complaint triage. Must work with NO network.
-
-## Stack
-Python, Streamlit, sqlite3, requests, pandas. LLM = local Ollama (`http://localhost:11434/api/generate`,
-`format:"json"`, `stream:false`, 20s timeout). `MODEL` constant in triage.py = the gemma model from `ollama list`.
-
-## Files
-- `sample_complaints.json` — 30 complaints (app/twitter/email/paper), 6 stations, Gujarati/Hindi/English/Gujlish,
-  gold_department + gold_urgency. 4 urgent safety cases; clusters: Thaltej lift (4), Kalupur dirty toilets, Vastral Gam fare/QR.
-- `triage.py` — `classify(text)` → {department, urgency 1-5, language, summary_en, draft_reply (same language), reason, method}.
-  Ollama first, multilingual keyword rules fallback. Safety override (fire/aag/આગ/track/fell/harassment/stuck) → urgency 5.
-- `db.py` — SQLite `complaints.db`, `synced` 0/1 column (outbox pattern).
-- `app.py` — Streamlit UI: online/offline indicator, load samples, add complaint, Triage all (progress bar), metrics,
-  department tabs sorted by urgency (5 pinned red), editable draft replies, Sync → `sync_outbox.json` (online) or "N queued" (offline).
-
-- Tabs: Queue (dept sub-tabs) · Scorecard (AI vs rules: dept acc, urgency ±1, safety recall, s/complaint, misclassified)
-  · Incidents (same station+dept within 2h, score = count × max urgency, altair heatmap).
-- Maintenance Alerts tab (PS-02 bridge): `db.maintenance()` = incidents in lifts/fare/cleanliness with 2+ complaints,
-  asset via 4-language keywords (`db.ASSETS`), action by urgency/count, CSV "night-shift roster" download.
-- Sidebar "Photo of paper form": camera/upload → base64 → Ollama `images` → OCR text → classify → save channel=paper.
-  Non-vision model / offline → friendly warning.
+Offline-first complaint triage for metro station controllers. Must keep working with no network. Now a portfolio
+project: keep numbers honest and reproducible.
 
 ## Run
-`python -m streamlit run app.py` (streamlit.exe is not on PATH) · tests: `python test_app.py` (7 PASS/FAIL checks)
-· quick test: `python triage.py`. Incident grouping lives in `db.incidents()`, photo OCR wrapper is `triage.read_photo()`.
+- App: `python -m streamlit run app.py` (streamlit.exe may not be on PATH)
+- Tests: `python test_app.py` (PASS/FAIL/SKIP per check; the Gemma check skips if Ollama isn't running)
+- Accuracy report: `python tools/evaluate.py` → `results/scorecard.md` (add `--no-llm` to skip Gemma)
+- Training data: `python tools/generate_training_data.py` (deterministic; test fails if the JSON is stale)
 
-## Offline ML (pure stdlib, no sklearn — network too slow, don't install)
-- `triage.train_ml()` → Multinomial NB (char 2-4grams + words, binarised, station names stripped) → `models/*.json`.
-- classify(): LLM → NB (`ML_MIN_CONF` 0.4, else rules) → rules; safety override last. method llm/ml/rules + confidence.
-- training_data.json: 200 synthetic rows (generator was in scratchpad), avoids keyword vocabulary.
-- HONEST RESULT on held-out 30: NB dept 43% / urgency±1 77% vs rules 100%/100%. NB overconfident (≈1.0 when wrong),
-  so 0.4 threshold rarely fires; 8 red cards instead of 4. Cause: training vocab ≠ real complaint vocab. Pending user decision.
+## Pipeline (triage.py `classify`)
+1. Gemma via local Ollama, auto-detected by `llm_model()` (prefers gemma3:4b, then 1b; `METRO_LLM` env overrides).
+2. Pure-stdlib Naive Bayes (char 2-4grams + words). Confidence is temperature-calibrated (`nb_probs`, divide by
+   sqrt(#features)). Below `ML_MIN_CONF` (0.5): keyword rules if they match, else keep ML and flag "Check this one".
+   Urgency-5 prediction moves a complaint to safety only if P(safety) >= `PROMOTE_MIN_SAFETY` (0.2).
+3. Keyword rules (5 language styles). Rules give safety urgency 4; only danger words give 5.
+Then safety-first checks: NB second opinion after an LLM answer, and `SAFETY` danger words force urgency 5.
+Models in `models/` retrain automatically when `training_data.json` changes (hash stored in the model JSON).
 
-## Status (2026-10-10) — FEATURE FREEZE
-- test_app.py: 22/23 PASS; only fail = Ollama model broken (not fixable in code).
-- Sync now probes internet via `db.SYNC_URL` (not Ollama); `db.sync()` returns (synced, n); outbox dedupes by id.
-- `db.add` dedupes same station+text (sample batch load is idempotent).
-- All features built + headless-tested (Streamlit AppTest) on the rules path.
-- `online()` checks `/api/show` for MODEL (not just /api/tags); offline → classify skips AI entirely.
-- BLOCKER for AI: `qwen2.5-coder:7b` blob is missing on disk (listed but "not found"). No gemma installed.
-  Fix: `ollama pull gemma3:4b` (~3.3GB, has vision for photo OCR) then set MODEL in triage.py. gemma3:1b = text only.
-- Departments: safety|cleanliness|fare|lifts|staff_behaviour|other.
+## Data
+- `sample_complaints.json`: 30 demo complaints for the UI (the keyword rules were written against these).
+- `eval_complaints.json`: 120 hand-written held-out complaints, 20 per department, 5 language styles. Never train on it.
+- `training_data.json`: 873 generated rows from `tools/generate_training_data.py`, no overlap with either set above.
+
+## Current results (offline, eval set)
+NB pipeline: dept 92%, urgency±1 96%, safety recall 92% (12/13), 3 false alarms. Rules only: dept 68%.
+Thresholds and danger words were set after error analysis on the eval set, so recall is slightly optimistic.
+Gemma not benchmarked yet: run `tools/evaluate.py` with Ollama running and update the README table.
+
+## UI (app.py)
+Station-name-board header (yellow #F2C230, Hind Vadodara font), status pills (Gemma / network / counts),
+"Urgent now" lane across departments, department tabs, Incidents (+ heatmap), Maintenance (night-shift CSV),
+Accuracy tab on the eval set. Theme in `.streamlit/config.toml`. Screenshots for the README in `docs/screenshots/`.
+
+## Conventions
+- Git commits are authored by Samay Rathod with no Co-Authored-By line.
+- Departments: safety | cleanliness | fare | lifts | staff_behaviour | other.

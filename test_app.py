@@ -18,11 +18,17 @@ FIELDS = ("department", "urgency", "language", "summary_en", "draft_reply", "rea
 results = []
 
 
+class Skip(Exception):
+    """Raise inside a check that needs something optional (e.g. Ollama) that isn't installed."""
+
+
 def check(section, name):
     def wrap(fn):
         try:
             detail = fn() or ""
             results.append((section, name, "PASS", detail))
+        except Skip as e:
+            results.append((section, name, "SKIP", str(e)))
         except Exception as e:
             tb = traceback.extract_tb(e.__traceback__)[-1]
             results.append((section, name, "FAIL", f"{type(e).__name__}: {str(e)[:160]} (line {tb.lineno})"))
@@ -63,12 +69,13 @@ def valid(r):
 @check("1 Setup", "Ollama reachable, model responds <20s")
 def _():
     import triage
-    assert triage.online(), f"Ollama down or model '{triage.MODEL}' missing/broken"
+    if not triage.llm_available():
+        raise Skip("Ollama or a Gemma model isn't running (optional: `ollama pull gemma3:4b`)")
     t = time.time()
     r = valid(triage.ai("Lift at Thaltej is broken"))
     s = time.time() - t
-    assert s < 20, f"{s:.1f}s"
-    return f"{triage.MODEL}: {r['department']}/{r['urgency']} in {s:.1f}s"
+    assert s < triage.LLM_TIMEOUT, f"{s:.1f}s"
+    return f"{triage.llm_model()}: {r['department']}/{r['urgency']} in {s:.1f}s"
 
 
 @check("1 Setup", "Imports work; DB created fresh if missing")
@@ -289,19 +296,24 @@ def _():
 
 
 # ---------------- 6b. OFFLINE ML (Naive Bayes) ----------------
-@check("6b ML", "training_data.json: ~200, balanced, 4 languages, no overlap with 30 test samples")
+@check("6b ML", "training_data.json: reproducible, roughly balanced, 5 languages, no overlap with test sets")
 def _():
     from collections import Counter
     import triage
+    sys.path.insert(0, os.path.join(HERE, "tools"))
+    from generate_training_data import generate
     tr = json.load(open(triage.TRAIN_DATA, encoding="utf-8"))
-    test = json.load(open("sample_complaints.json", encoding="utf-8"))
+    assert tr == generate(), "training_data.json is stale: run python tools/generate_training_data.py"
     depts = Counter(x["gold_department"] for x in tr)
-    assert 180 <= len(tr) <= 220, len(tr)
-    assert set(depts) == set(triage.DEPTS) and max(depts.values()) - min(depts.values()) <= 3, depts
+    assert len(tr) >= 600, len(tr)
+    assert set(depts) == set(triage.DEPTS) and max(depts.values()) <= 1.5 * min(depts.values()), depts
     assert set(Counter(x["gold_urgency"] for x in tr)) == {1, 2, 3, 4, 5}
-    assert {"Gujarati", "Hindi", "English", "Gujlish"} <= {x["language"] for x in tr}
-    assert not {x["text"] for x in tr} & {x["text"] for x in test}, "test leak"
-    assert not {x["id"] for x in tr} & {x["id"] for x in test}, "id clash"
+    assert {"Gujarati", "Hindi", "English", "Gujlish", "Hinglish"} <= {x["language"] for x in tr}
+    norm = lambda t: " ".join(t.lower().split())
+    for f in ("sample_complaints.json", "eval_complaints.json"):
+        test = json.load(open(f, encoding="utf-8"))
+        assert not {norm(x["text"]) for x in tr} & {norm(x["text"]) for x in test}, f"test leak into {f}"
+        assert not {x["id"] for x in tr} & {x["id"] for x in test}, f"id clash with {f}"
     return f"{len(tr)} rows, {dict(depts)}"
 
 
@@ -335,7 +347,7 @@ def _():
     return f"train-set acc {hits / len(tr):.0%}"
 
 
-@check("6b ML", "Pipeline: ML used offline; confidence < 0.4 → rules; ML broken → rules")
+@check("6b ML", "Pipeline: ML used offline; shaky ML → rules; ML broken → rules")
 def _():
     import triage
     r = valid(triage.classify("{st} par elevator be divas thi bandh che", use_ai=False))
@@ -385,7 +397,9 @@ def _():
     at.button[0].click().run()           # triage all
     assert not at.exception, at.exception
     assert len(db.all_rows()) == 30, len(db.all_rows())
-    return f"{len(at.error)} red urgent cards, {len(at.tabs)} tabs, no exceptions"
+    red = sum('class="card u5"' in m.value for m in at.markdown)
+    assert red >= 4, red
+    return f"{red} red urgent cards, {len(at.tabs)} tabs, no exceptions"
 
 
 @check("7 Launch", "streamlit headless 15s, no tracebacks")
@@ -405,23 +419,122 @@ def _():
     return "health ok, clean log"
 
 
+# ---------------- 8. ACCURACY & SAFETY REGRESSION (120-complaint held-out set) ----------------
+@check("8 Accuracy", "eval_complaints.json: 120 items, 20 per department, 5 language styles")
+def _():
+    from collections import Counter
+    import triage
+    ev = json.load(open("eval_complaints.json", encoding="utf-8"))
+    assert len(ev) == 120, len(ev)
+    assert set(Counter(x["gold_department"] for x in ev).values()) == {20}
+    assert {x["language"] for x in ev} == {"Gujarati", "Hindi", "English", "Gujlish", "Hinglish"}
+    assert len({x["id"] for x in ev}) == 120
+    return f"{sum(x['gold_urgency'] == 5 for x in ev)} truly urgent"
+
+
+@check("8 Accuracy", "Offline pipeline stays at >= 88% department, >= 90% safety recall, <= 5 false alarms")
+def _():
+    import triage
+    ev = json.load(open("eval_complaints.json", encoding="utf-8"))
+    rows = triage.evaluate(ev, use_ai=False, use_ml=True)
+    sc = triage.score(rows)
+    false_red = sum(r["urgency"] == 5 and r["gold_urgency"] < 5 for r in rows)
+    assert sc["dept_acc"] >= 0.88, sc
+    assert sc["safety_recall"] >= 0.90, sc
+    assert false_red <= 5, false_red
+    return f"dept {sc['dept_acc']:.0%}, urgency±1 {sc['urg_acc']:.0%}, safety recall {sc['safety_recall']:.0%}, {false_red} false alarms"
+
+
+@check("8 Accuracy", "Calibrated confidence: high-confidence predictions are much more accurate than low")
+def _():
+    import triage
+    ev = json.load(open("eval_complaints.json", encoding="utf-8"))
+    m = triage.ml_models()["department"]
+    hi, lo = [], []
+    for x in ev:
+        p = triage.nb_probs(m, x["text"])
+        assert abs(sum(p.values()) - 1) < 1e-9
+        best = max(p, key=p.get)
+        (hi if p[best] >= 0.9 else lo).append(best == x["gold_department"])
+    acc = lambda v: sum(v) / len(v)
+    assert hi and lo, (len(hi), len(lo))
+    assert acc(hi) >= 0.95 and acc(hi) - acc(lo) >= 0.15, (acc(hi), acc(lo))
+    return f">=90% conf: {acc(hi):.0%} right (n={len(hi)}); below: {acc(lo):.0%} (n={len(lo)})"
+
+
+@check("8 Accuracy", "Urgency-5 promotion needs safety evidence (rats/cockroaches never red)")
+def _():
+    import triage
+    for t in ("ડબ્બામાં ઉંદર દોડતા જોયા", "Coach mein cockroach ghoom rahe the", "Wi-Fi at the station doesn't work"):
+        r = triage.classify(t, use_ai=False)
+        assert r["urgency"] < 5, (t, r["department"], r["urgency"])
+    r = triage.classify("एक यात्री बेहोश होकर गिर पड़ा है", use_ai=False)
+    assert r["department"] == "safety" and r["urgency"] == 5, r
+    return "pests not red; unconscious passenger red"
+
+
+@check("8 Accuracy", "Danger words in every script; no false alarm on look-alikes")
+def _():
+    import triage
+    danger = ["Man fainted near the gate", "ek aadmi chaaku leke ghoom raha hai", "બિનવારસી બેગ પડી છે",
+              "कोच में धुआं भर गया है", "Ladies coach ma chhed-chhad thay che, chhedti kare che", "unattended bag on platform"]
+    for t in danger:
+        assert triage.safety_hits(t), t
+    for t in ("aage jao", "Mera bag kho gaya, lost and found kahan hai?", "Refund please"):
+        assert not triage.safety_hits(t), (t, triage.safety_hits(t))
+    return f"{len(danger)} danger phrases caught"
+
+
+@check("8 Accuracy", "LLM answer is double-checked: Naive Bayes danger signal still raises urgency 5")
+def _():
+    import triage
+    fake = {"department": "other", "urgency": 2, "language": "Hindi", "summary_en": "x", "draft_reply": "y",
+            "reason": "llm says other", "method": "llm", "confidence": None, "model": "fake"}
+    with mock.patch.object(triage, "ai", return_value=dict(fake)):
+        r = triage.classify("कोच में एक यात्री बेहोश होकर पड़ा है, कोई मदद नहीं कर रहा", use_ai=True)
+    assert r["urgency"] == 5 and r["department"] == "safety", r
+    with mock.patch.object(triage, "ai", return_value=dict(fake)):
+        r = triage.classify("Please run more trains in the evening", use_ai=True)
+    assert r["urgency"] == 2 and r["method"] == "llm", r
+    return "LLM 'other/2' overridden for an emergency, kept for a suggestion"
+
+
+@check("8 Accuracy", "Gemma auto-detect prefers 4b, falls back to 1b, None when absent; METRO_LLM wins")
+def _():
+    import triage
+    def tags(names):
+        resp = mock.Mock(); resp.json.return_value = {"models": [{"name": n} for n in names]}
+        return resp
+    cases = [(["llama3:8b", "gemma3:1b", "gemma3:4b"], "gemma3:4b"), (["gemma3:1b"], "gemma3:1b"), (["llama3:8b"], None)]
+    try:
+        for names, want in cases:
+            triage._llm.clear()
+            with mock.patch.object(triage, "MODEL", None), mock.patch.object(triage.requests, "get", return_value=tags(names)):
+                assert triage.llm_model() == want, (names, triage.llm_model())
+        triage._llm.clear()
+        with mock.patch.object(triage, "MODEL", "gemma3:12b"):
+            assert triage.llm_model() == "gemma3:12b"
+    finally:
+        triage._llm.clear()
+    return "4b > 1b > none; env override respected"
+
+
+@check("8 Accuracy", "tools/evaluate.py runs offline and writes results/scorecard.md")
+def _():
+    out = subprocess.run([sys.executable, "tools/evaluate.py", "--no-llm"], capture_output=True, text=True, timeout=120)
+    assert out.returncode == 0, out.stderr[-300:]
+    md = open(os.path.join("results", "scorecard.md"), encoding="utf-8").read()
+    assert "Naive Bayes" in md and "Gujlish" in md
+    return md.splitlines()[2][:90]
+
+
 if __name__ == "__main__":
     w = max(len(n) for _, n, _, _ in results)
     for sec, name, status, detail in results:
         print(f"{status}  [{sec}] {name:<{w}}  {detail}")
     fails = sum(r[2] == "FAIL" for r in results)
-    print(f"\n{len(results) - fails}/{len(results)} passed")
+    skips = sum(r[2] == "SKIP" for r in results)
+    print(f"\n{len(results) - fails - skips}/{len(results)} passed, {fails} failed, {skips} skipped")
 
-    import triage
-    samples = json.load(open("sample_complaints.json", encoding="utf-8"))
-    runs = [("ML (Naive Bayes)", False, True), ("Rules only", False, False)]
-    if triage.online():
-        runs.insert(0, ("LLM", True, False))
-    print("\nSCORECARD (30 held-out samples)" + ("" if triage.online() else "  — LLM unavailable, no LLM row"))
-    for name, use_ai, use_ml in runs:
-        rows = triage.evaluate(samples, use_ai, use_ml)
-        sc = triage.score(rows)
-        used = sum(r["method"] == {"LLM": "llm", "ML (Naive Bayes)": "ml"}.get(name, "rules") for r in rows)
-        print(f"  {name:<18} dept {sc['dept_acc']:.0%}  urgency±1 {sc['urg_acc']:.0%}  "
-              f"safety recall {sc['safety_recall']:.0%}  {sc['avg_s']:.3f}s/complaint  ({used}/30 by this method)")
+    print("\nFor the full accuracy report on the 120-complaint test set: python tools/evaluate.py")
     sys.exit(1 if fails else 0)
