@@ -1,0 +1,8 @@
+*.db
+sync_outbox.json
+__pycache__/
+.venv/
+venv/
+.env
+# regenerated automatically from training_data.json on first run (~0.3s)
+models/
